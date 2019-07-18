@@ -5,11 +5,9 @@ class Card {
         this.textHtml = 
         `<div class='flip-container'>
             <div class='flipper'>
-                <div class='front'>
-                    
+                <div class='front'>  
                 </div>
-                <div class='back' style='background-image: url(${this.img});'>
-                    
+                <div class='back' style='background-image: url(${this.img});'>  
                 </div>
             </div>
         </div>`;
@@ -30,24 +28,24 @@ const images = ['images/gems-1.png',
 let cardsImages = images.concat(images);             // making pairs of images
 let cards = cardsImages.map(e => new Card(e));     
 
-function shuffle() {
+const shuffle = () => {
     cards.sort(() => 0.5 - Math.random());
 }
 
-function render() {
+const render = () => {
     shuffle();
     let cardsHtml = cards.map(e => e.textHtml).join('');
     document.querySelector('.main').innerHTML = 
     `<span id='score'>Find the same cards</span><br><br> ${cardsHtml}`;
 }
 
-function hide(cards) {
+const hide = (cards) => {
     cards.forEach((e) => {
         e.classList.toggle('hide');
     });    
 }
 
-function checkWin() {
+const checkWin = () => {
     if (hideCards.length === cards.length) {
         alert ("You win");
         render();
@@ -65,9 +63,7 @@ main.addEventListener('click', (e) => {
         e.target.closest('.flipper').classList.add('open');
         openCards.push(e.target.closest('.flipper')); 
     
-    
-        if (openCards.length === 2) { 
-                                                
+        if (openCards.length === 2) {                                     
             if (openCards[0].innerHTML === openCards[1].innerHTML) {
                 setTimeout(() => { 
                     hide(openCards); 
@@ -85,8 +81,7 @@ main.addEventListener('click', (e) => {
                     openCards = [];
                 }, 700);   
             }
-        }
-        
+        }  
     }
 } 
 );
